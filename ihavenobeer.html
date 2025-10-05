@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>beer</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-3px, -4px); }
+      20% { transform: translate(4px, 2px); }
+      30% { transform: translate(-1px, 1px); }
+      40% { transform: translate(2px, -5px); }
+      50% { transform: translate(-3px, 3px); }
+      60% { transform: translate(1px, -2px); }
+      70% { transform: translate(-1px, -5px); }
+      80% { transform: translate(2px, 4px); }
+      90% { transform: translate(-1px, 1px); }
+    }
+    .shake {
+      animation: shake 0.4s linear infinite;
+    }
+    .fade-out {
+      transition: opacity 4s ease;
+      opacity: 0;
+    }
+    .hidden {
+      display: none;
+    }
+    img {
+      margin-top: 20px;
+      width: 800px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <button id="beerBtn">give me beer</button>
+  <img id="beerImg" src="beer.jpg" alt="its fucken beer" class="hidden">
+  <audio id="beerSound" src="loop.mp3" loop></audio>
+  <audio id="clickSound" src="sfx.mp3"></audio>
+
+  <script>
+    const btn = document.getElementById('beerBtn');
+    const img = document.getElementById('beerImg');
+    const beerSound = document.getElementById('beerSound');
+    const clickSound = document.getElementById('clickSound');
+
+    btn.addEventListener('click', () => {
+      btn.classList.add('shake');
+      btn.classList.add('fade-out');
+      clickSound.play();
+      setTimeout(() => {
+        btn.classList.remove('shake');
+        btn.classList.add('hidden');
+        img.classList.remove('hidden');
+        beerSound.play();
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
